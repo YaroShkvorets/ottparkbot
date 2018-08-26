@@ -4,8 +4,8 @@ const GoogleSpreadsheet = require('google-spreadsheet');
 const url =       'http://traffic.ottawa.ca/map/parking_list?updateOnly';
 const creds = require('./client_secret.json');
 
-
-const d = new Date();
+//const date = new Date();
+const d = new Date(new Date().getTime() - 4*60*1000);
 const now = d.getFullYear() + "-" +
     ("00" + (d.getMonth() + 1)).slice(-2) + "-" +
     ("00" + d.getDate()).slice(-2) +
