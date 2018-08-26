@@ -1,6 +1,8 @@
 //https://docs.google.com/spreadsheets/d/15bliX7-RAnNjRahe10uS-PaW7QHXJMqvdZ5e0qZI2q4
 const fetchJson = require('node-fetch-json');
+const GoogleSpreadsheet = require('google-spreadsheet');
 const url =       'http://traffic.ottawa.ca/map/parking_list?updateOnly';
+const creds = require('./client_secret.json');
 
 
 const d = new Date();
@@ -11,9 +13,6 @@ const now = d.getFullYear() + "-" +
     ("00" + d.getHours()).slice(-2) + ":" +
     ("00" + d.getMinutes()).slice(-2) + ":" +
     ("00" + d.getSeconds()).slice(-2);
-
-
-
 
 
 
@@ -31,23 +30,12 @@ function handleData(data) {
        console.log(err);
      }
   });
-/*
-   for(let obj of data){
-     console.log('id:', obj['id'], 'freeSpaces: ', obj['freeSpaces'], 'freeAccessible: ', obj['freeAccessibleSpaces'])
-   }
 
-   console.log('object with id==25:', data.filter(obj => {return obj['id'] == '25'})[0])
-   */
  }
 
 
-
-
-var GoogleSpreadsheet = require('google-spreadsheet');
-var creds = require('./client_secret.json');
-
 // Create a document object using the ID of the spreadsheet - obtained from its URL.
-var doc = new GoogleSpreadsheet('15bliX7-RAnNjRahe10uS-PaW7QHXJMqvdZ5e0qZI2q4');
+const doc = new GoogleSpreadsheet('15bliX7-RAnNjRahe10uS-PaW7QHXJMqvdZ5e0qZI2q4');
 
 // Authenticate with the Google Spreadsheets API.
 doc.useServiceAccountAuth(creds, function (err) {
